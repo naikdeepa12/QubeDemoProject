@@ -19,3 +19,5 @@ Sign In Process
 3. OTP will be sent your mobile no.
 4. Verify your OTP.
 5. If OTP verified and mobile no exist then users emailid and name will be displayed else user will be informed that mobile no. does not exist.
+
+Postman API Links: https://www.getpostman.com/collections/bc1f0825606b53763231
