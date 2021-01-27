@@ -13,24 +13,32 @@ class Controller
             case "send_otp":
                 
 				$mobile_number = $_POST['mobile_number'];
+				
 				$_SESSION['mobno'] = $mobile_number;
-                   $apiKey = urlencode('cff8YFhUMtY-kn6cSDU7BgfiKkVvO3oswaZOGh1U9J');
-                   $numbers = array(
-                   $mobile_number
-               );
-               $sender = 'TEST';
+                $apiKey = urlencode('cff8YFhUMtY-C9iyujOYAJHKuwGyBAFRmsnirnCwEE');
+                $numbers = array('91'.$mobile_number);
+                $sender = urlencode('TXTLCL');
+				
                 $otp = rand(100000, 999999);
 				//$otp = 123456;
                 $_SESSION['session_otp'] = $otp;
-                $message = "Your One Time Password is " . $otp;
+                $message = rawurlencode("Your One Time Password is " .$otp);
                 
+				$numbers = implode(',', $numbers);
+				
 				$data = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, 'message' => $message);
 				
 				$ch = curl_init('https://api.textlocal.in/send/');
-				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_POST, TRUE);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 				$response = curl_exec($ch);
+				
+				if ($response === false) 
+					$response = curl_error($ch);
+
+				//echo stripslashes($response);
+
 				curl_close($ch);
 				
 				require_once ("verify.php");
@@ -53,22 +61,20 @@ class Controller
                 
                 $mobile_number = $_POST['mobile_number'];
                 $_SESSION['mobno'] = $mobile_number;
-                $apiKey = urlencode('cff8YFhUMtY-kn6cSDU7BgfiKkVvO3oswaZOGh1U9J');
-                $numbers = array(
-					$mobile_number
-                );
-                $sender = 'TEST';
+                $apiKey = urlencode('cff8YFhUMtY-C9iyujOYAJHKuwGyBAFRmsnirnCwEE');
+                 $numbers = array('91'.$mobile_number);
+                $sender = 'TXTLCL';
                 $otp = rand(100000, 999999);
 				//$otp = 123456;
                 $_SESSION['session_otp'] = $otp;
-                $message = "Your One Time Password is " . $otp;
-                
+                $message = rawurlencode("Your One Time Password is " .$otp);
+                $numbers = implode(',', $numbers);
 				$data = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, 'message' => $message);
 				
 				$ch = curl_init('https://api.textlocal.in/send/');
-				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_POST, TRUE);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 				$response = curl_exec($ch);
 				curl_close($ch);
 				
