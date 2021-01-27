@@ -11,13 +11,13 @@ Sign Up Process
 3. OTP will be sent your mobile no.
 4. Verify your OTP.
 5. If OTP verified user will be asked for email id and name.
-6. If mobile no does not exist then data will be saved else user will be informed that mobile no. does not exist.
+6. If mobile no does not exist then data will be saved else user will be informed that mobile no. exist in system.
 
 Sign In Process
 1. Execute the file on local server using link http://localhost/php_test/login.php
 2. Enter mobile no and click on Send OTP.
 3. OTP will be sent your mobile no.
 4. Verify your OTP.
-5. If OTP verified and mobile no exist then users emailid and name will be displayed else user will be informed that mobile no. does not exist.
+5. If OTP verified and mobile no exist then users email id and name will be displayed else user will be informed that mobile no. does not exist in system.
 
 Postman API Links: https://www.getpostman.com/collections/bc1f0825606b53763231
